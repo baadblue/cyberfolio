@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="logo">
-        <img src="sources/laser.png" alt="Sabre laser" class="logo-image">
+        <img src="assets/sources/laser.png" alt="Sabre laser" class="logo-image">
         <a href="index.php">Lord Vador</a>
     </div>
     <i class="ri-menu-fill" id="open_menu"></i>

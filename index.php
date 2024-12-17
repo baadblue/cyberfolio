@@ -26,7 +26,7 @@
         
         <div class="about-grid">
             <div class="about-image">
-                <img src="sources/vader-portrait.jpg" alt="Dark Vador">
+                <img src="assets/sources/vader-portrait.jpg" alt="Dark Vador">
                 <div class="system-scan"></div>
             </div>
             
