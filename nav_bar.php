@@ -6,9 +6,9 @@
     <i class="ri-menu-fill" id="open_menu"></i>
     <ul class="menu">
         <li><a href="index.php#accueil">Accueil</a></li>
-        <li><a href="index.php#a-propos">À Propos</a></li>
-        <li><a href="index.php#competences">Compétences</a></li>
-        <li><a href="index.php#projets">Projets</a></li>
+        <li><a href="a-propos.php">À Propos</a></li>
+        <li><a href="competences.php">Compétences</a></li>
+        <li><a href="projets.php">Projets</a></li>
         <li><a href="contact.php">Contact</a></li>
     </ul>
 
@@ -21,9 +21,9 @@
                 <i class="ri-close-line" id="close_menu"></i>
             </li>
             <li><a href="index.php#accueil"><i class="ri-home-4-line"></i> Accueil</a></li>
-            <li><a href="index.php#a-propos"><i class="ri-user-line"></i> À Propos</a></li>
-            <li><a href="index.php#competences"><i class="ri-sword-line"></i> Compétences</a></li>
-            <li><a href="index.php#projets"><i class="ri-planet-line"></i> Projets</a></li>
+            <li><a href="a-propos.php"><i class="ri-user-line"></i> À Propos</a></li>
+            <li><a href="competences.php"><i class="ri-sword-line"></i> Compétences</a></li>
+            <li><a href="projets.php"><i class="ri-planet-line"></i> Projets</a></li>
             <li><a href="contact.php"><i class="ri-message-2-line"></i> Contact</a></li>
         </ul>
 

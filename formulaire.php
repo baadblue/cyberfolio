@@ -3,9 +3,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // Inclure les fichiers nécessaires de PHPMailer
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'assets/PHPMailer/src/Exception.php';
+require 'assets/PHPMailer/src/PHPMailer.php';
+require 'assets/PHPMailer/src/SMTP.php';
 
 /*
     ********************************************************************************************
