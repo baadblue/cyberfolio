@@ -1,20 +1,17 @@
 <?php
+// Permet l'accès seulement aux utilisateur connectés
 require_once 'functions/auth.php';
 access_connected_users_only();
 
-require 'head.php';
+// Connection à la base de données
+require 'functions/db_operations.php';
+$pdo = connection_db();
 
-$dsn = "mysql:host=localhost;dbname=portfolio;charset=utf8mb4";
-$username = "root";
-$password = "root";
-
-try {
-    // Connexion à la base de données avec PDO
-    $pdo = new PDO($dsn, $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion réussie !";
-} catch (PDOException $e) {
-    die("Erreur : " . $e->getMessage());
+// Traite les erreurs potentielles lors de l'ouverture de la bdd
+if ($pdo[0] === false) {
+    die($pdo[1]);
+} else {
+    $pdo = $pdo[1];
 }
 
 try {
@@ -33,28 +30,125 @@ try {
 }
 ?>
 
-<nav class="navbar">
-    <ul class="menu">
-        <li><a href="index.php">Mon Site</a></li>
-        <li><a href="logout.php">Deconnection</a></li>
-    </ul>
+<?php require 'head.php'; ?>
 
-    <div class="sidebar_menu">
-        <ul class="sidebar_top">
-            <li>
-                <div class="logo sidebar_logo">
-                    <a href="#">Empire Galactique</a>
-                </div>
-                <i class="ri-close-line" id="close_menu"></i>
-            </li>
-            <li><a href="index.php#accueil"><i class="ri-home-4-line"></i> Accueil</a></li>
-            <li><a href="index.php#a-propos"><i class="ri-user-line"></i> À Propos</a></li>
-            <li><a href="index.php#competences"><i class="ri-sword-line"></i> Compétences</a></li>
-            <li><a href="index.php#projets"><i class="ri-planet-line"></i> Projets</a></li>
-            <li><a href="contact.php"><i class="ri-message-2-line"></i> Contact</a></li>
-        </ul>
+<div class="dashboard-container">
+    <!-- Nouvelle Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <h2>Empire Galactique</h2>
+            </div>
+        </div>
+        
+        <div class="sidebar-menu">
+            <ul>
+                <li class="menu-header">Navigation</li>
+                <li><a href="dashboard.php" class="active"><i class="ri-dashboard-line"></i> Tableau de bord</a></li>
+                <li><a href="index.php"><i class="ri-home-4-line"></i> Voir le site</a></li>
+                
+                <li class="menu-header">Gestion des données</li>
+                <li><a href="users.php"><i class="ri-user-settings-line"></i> Gestion utilisateurs</a></li>
+                <li><a href="products.php"><i class="ri-shopping-bag-line"></i> Gestion produits</a></li>
+                <li><a href="categories.php"><i class="ri-folder-settings-line"></i> Gestion catégories</a></li>
+                
+                <li class="menu-header">Paramètres</li>
+                <li><a href="profile.php"><i class="ri-user-line"></i> Mon profil</a></li>
+                <li><a href="settings.php"><i class="ri-settings-4-line"></i> Paramètres</a></li>
+                <li><a href="logout.php"><i class="ri-logout-box-line"></i> Déconnexion</a></li>
+            </ul>
+        </div>
     </div>
-</nav>
+
+    <!-- Contenu principal -->
+    <div class="main-content">
+        <div class="content-header">
+            <h1>Tableau de bord</h1>
+        </div>
+        
+        <div class="content">
+            <!-- Ici viendra le contenu de votre dashboard -->
+        </div>
+    </div>
+</div>
+
+<style>
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background: #1a1a1a;
+    color: #fff;
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #2c2c2c;
+}
+
+.sidebar-menu {
+    padding: 20px 0;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-header {
+    padding: 10px 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 15px;
+}
+
+.sidebar-menu ul li a {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.sidebar-menu ul li a:hover {
+    background: #2c2c2c;
+}
+
+.sidebar-menu ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar-menu ul li a.active {
+    background: #2c2c2c;
+    border-left: 4px solid #007bff;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.content-header {
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+</style>
 
 </body>
 </html>
