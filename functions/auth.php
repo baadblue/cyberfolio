@@ -7,11 +7,7 @@ function is_connected() {
     if (!isset($_SESSION['id'])) {
         return FALSE;
     } else {
-        if ($_SESSION['id'] === 123) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
+        return TRUE;
     }
 }
 
