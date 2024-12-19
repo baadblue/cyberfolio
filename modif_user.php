@@ -19,6 +19,8 @@ $info = recover_user_info($pdo, $_SESSION['id']);
 $firstname = $info['firstname'];
 $lastname = $info['lastname'];
 $email = $info['email'];
+$citation = $info['citation'];
+$titre = $info['titre'];
 ?>
 
 <?php require 'head.php';
@@ -41,9 +43,18 @@ require 'nav_bar_dashboard.php' ?>
                     <input type="text" name="lastname" value="<?php echo htmlspecialchars($lastname) ?>">
                 </div>
                 <div class="form-group">
+                    <label for="titre">Titre</label>
+                    <input type="text" name="titre" value="<?php echo htmlspecialchars($titre) ?>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Citation</label>
+                    <input type="text" name="citation" value="<?php echo htmlspecialchars($citation) ?>">
+                </div>
+                <div class="form-group">
                     <label for="email">Adresse mail</label>
                     <input type="email" name="email" value="<?php echo htmlspecialchars($email) ?>">
                 </div>
+               
                 <div class="form-group">
                     <button type="submit" class="btn imperial-btn">Enregistrer les modifications</button>
                 </div>
