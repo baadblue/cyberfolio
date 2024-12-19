@@ -26,3 +26,15 @@ function verify_login ($pdo, $email, $password) {
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     return $row["id_profile"];
 }
+
+function recover_user_info ($pdo, $id) {
+    $requete = "SELECT firstname, lastname, email FROM profile WHERE id_profile = :id";
+    $stmt = $pdo -> prepare($requete);
+    $stmt -> execute([':id' => $id]);
+
+    $info = $stmt->fetch(PDO::FETCH_ASSOC);
+    return  ['firstname' => $info['firstname'],
+            'lastname' => $info['lastname'],
+            'email' => $info['email'],
+        ];
+}
