@@ -28,7 +28,7 @@ function verify_login ($pdo, $email, $password) {
 }
 
 function recover_user_info ($pdo, $id) {
-    $requete = "SELECT firstname, lastname, email FROM profile WHERE id_profile = :id";
+    $requete = "SELECT firstname, lastname, email, citation, titre FROM profile WHERE id_profile = :id";
     $stmt = $pdo -> prepare($requete);
     $stmt -> execute([':id' => $id]);
 
@@ -36,5 +36,7 @@ function recover_user_info ($pdo, $id) {
     return  ['firstname' => $info['firstname'],
             'lastname' => $info['lastname'],
             'email' => $info['email'],
+            'citation' => $info['citation'],
+            'titre' => $info['titre'],
         ];
 }
