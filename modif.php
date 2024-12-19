@@ -21,13 +21,20 @@ if (isset($_GET)) {
         $requete = "UPDATE profile 
                     SET firstname = :firstname, 
                     lastname = :lastname, 
+                    citation = :citation, 
+                    titre = :titre, 
                     email = :email 
                     WHERE id_profile = :id";
         $stmt = $pdo -> prepare($requete);
         $stmt -> execute([':id' => 1,
                         ':firstname' => $_POST['firstname'],
                         ':lastname' => $_POST['lastname'],
-                        ':email' => $_POST['email']
+                        ':email' => $_POST['email'],
+                        ':citation' => $_POST['citation'],
+                        ':titre' => $_POST['titre']
                     ]);
     }
 }
+
+header('Location: dashboard.php');
+exit();

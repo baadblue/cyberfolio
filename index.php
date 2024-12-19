@@ -14,6 +14,8 @@ if ($pdo[0] === false) {
 $info = recover_user_info($pdo, 1);
 $firstname = $info['firstname'];
 $lastname = $info['lastname'];
+$citation = $info['citation'];
+$titre = $info['titre'];
 
 ?>
 
@@ -21,8 +23,8 @@ $lastname = $info['lastname'];
     <div class="tech-decoration top-left"></div>
     <div class="hero-content">
         <h1><?php echo $firstname . ' ' . $lastname; ?></h1>
-        <h2 class="tech-title">Architecte des Défenses Impériales</h2>
-        <p class="tagline">"La sécurité n'est pas une option. C'est une question de survie."</p>
+        <h2 class="tech-title"><?php echo $titre; ?></h2>
+        <p class="tagline"><?php echo $citation; ?></p>
         <div class="hero-cta">
             <button class="btn imperial-btn">
                 <span class="tech-text">Audit de Sécurité</span>
