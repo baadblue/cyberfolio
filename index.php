@@ -19,3 +19,5 @@
     </div>
     <div class="tech-decoration bottom-right"></div>
 </section>
+
+<?php require_once 'footer.php'; ?>
