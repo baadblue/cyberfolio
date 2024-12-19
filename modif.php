@@ -17,5 +17,17 @@ if ($pdo[0] === false) {
 
 
 if (isset($_GET)) {
-    if $_GET()
+    if ($_GET['modif'] === 'user') {
+        $requete = "UPDATE profile 
+                    SET firstname = :firstname, 
+                    lastname = :lastname, 
+                    email = :email 
+                    WHERE id_profile = :id";
+        $stmt = $pdo -> prepare($requete);
+        $stmt -> execute([':id' => 1,
+                        ':firstname' => $_POST['firstname'],
+                        ':lastname' => $_POST['lastname'],
+                        ':email' => $_POST['email']
+                    ]);
+    }
 }

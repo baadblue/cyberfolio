@@ -31,7 +31,7 @@ require 'nav_bar_dashboard.php' ?>
         </div>
         
         <div class="content">
-            <form action="" method="POST" class="form-container">
+            <form action="modif.php?modif=user" method="POST" class="form-container">
                 <div class="form-group">
                     <label for="firstname">Nom</label>
                     <input type="text" name="firstname" value="<?php echo htmlspecialchars($firstname) ?>">
