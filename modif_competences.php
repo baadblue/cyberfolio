@@ -74,54 +74,64 @@ require 'nav_bar_dashboard.php' ?>
         </div>
         
         <div class="content">
-            <form action="" method="POST" class="form-container">
+            <form action="" method="POST" class="project-form">
                 <?php if ($competence_to_edit): ?>
                     <input type="hidden" name="competence_id" value="<?php echo $competence_to_edit['id']; ?>">
                 <?php endif; ?>
                 
-                <div class="form-group">
-                    <label for="name">Nom de la compétence</label>
-                    <input type="text" name="name" value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['name']) : ''; ?>" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Nom de la compétence</label>
+                        <input type="text" id="name" name="name" class="form-control"
+                               value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['name']) : ''; ?>" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="security_level">Niveau de sécurité</label>
+                        <select id="security_level" name="security_level" class="form-control" required>
+                            <?php for($i = 1; $i <= 5; $i++): ?>
+                                <option value="<?php echo $i; ?>" <?php echo ($competence_to_edit && $competence_to_edit['security_level'] == $i) ? 'selected' : ''; ?>>
+                                    NIVEAU <?php echo $i; ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="icon">Icône (classe Remix Icon)</label>
-                    <input type="text" name="icon" value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['icon']) : ''; ?>" required>
+                    <input type="text" id="icon" name="icon" class="form-control"
+                           value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['icon']) : ''; ?>" required>
                 </div>
 
-                <div class="form-group">
-                    <label for="feature1">Fonctionnalité 1</label>
-                    <input type="text" name="feature1" value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature1']) : ''; ?>" required>
-                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="feature1">Fonctionnalité 1</label>
+                        <input type="text" id="feature1" name="feature1" class="form-control"
+                               value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature1']) : ''; ?>" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="feature2">Fonctionnalité 2</label>
-                    <input type="text" name="feature2" value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature2']) : ''; ?>" required>
+                    <div class="form-group">
+                        <label for="feature2">Fonctionnalité 2</label>
+                        <input type="text" id="feature2" name="feature2" class="form-control"
+                               value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature2']) : ''; ?>" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
                     <label for="feature3">Fonctionnalité 3</label>
-                    <input type="text" name="feature3" value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature3']) : ''; ?>" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="security_level">Niveau de sécurité</label>
-                    <select name="security_level" required>
-                        <?php for($i = 1; $i <= 5; $i++): ?>
-                            <option value="<?php echo $i; ?>" <?php echo ($competence_to_edit && $competence_to_edit['security_level'] == $i) ? 'selected' : ''; ?>>
-                                NIVEAU <?php echo $i; ?>
-                            </option>
-                        <?php endfor; ?>
-                    </select>
+                    <input type="text" id="feature3" name="feature3" class="form-control"
+                           value="<?php echo $competence_to_edit ? htmlspecialchars($competence_to_edit['feature3']) : ''; ?>" required>
                 </div>
 
                 <div class="form-actions">
                     <button type="submit" name="submit" class="btn imperial-btn">
-                        <?php echo $competence_to_edit ? 'Modifier' : 'Ajouter'; ?>
+                        <?php echo $competence_to_edit ? 'Modifier la compétence' : 'Ajouter la compétence'; ?>
                     </button>
                     <?php if ($competence_to_edit): ?>
-                        <button type="submit" name="delete" class="delete-btn" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')">
-                            Supprimer
+                        <button type="submit" name="delete" class="btn delete-btn" 
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')">
+                            Supprimer la compétence
                         </button>
                     <?php endif; ?>
                 </div>
