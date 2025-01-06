@@ -76,22 +76,42 @@ window.addEventListener('scroll', setActiveLink);
 // Exécuter une fois au chargement de la page
 document.addEventListener('DOMContentLoaded', setActiveLink);
 
-// Mettre à jour le lien actif lors du clic
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        // Retirer la classe active de tous les liens
-        document.querySelectorAll('nav .menu li a, .sidebar_menu li a')
-            .forEach(link => link.classList.remove('active'));
-        
-        // Ajouter la classe active au lien cliqué
-        this.classList.add('active');
-        
-        // Faire défiler jusqu'à la section
-        const section = document.querySelector(this.getAttribute('href'));
-        section.scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+const BREACHES_URL = 'https://haveibeenpwned.com/api/v3/breaches';
+
+async function fetchLatestBreach() {
+  const securityBreachDiv = document.getElementById('security-breach');
+
+  try {
+    // Récupération des données via l'API
+    const response = await fetch(BREACHES_URL);
+
+    if (!response.ok) {
+      throw new Error(`Erreur API : ${response.status}`);
+    }
+
+    const breaches = await response.json();
+
+    // Tri des données par date (si disponible) pour obtenir la plus récente
+    breaches.sort((a, b) => new Date(b.BreachDate) - new Date(a.BreachDate));
+
+    // Sélection de la dernière faille
+    const latestBreach = breaches[0];
+
+    // Affichage des informations
+    securityBreachDiv.innerHTML = `
+      <p class="response"><strong>Dernière faille de sécurité :</strong> ${latestBreach.Title}</p>
+      <p class="response"><strong>Date :</strong> ${new Date(latestBreach.BreachDate).toLocaleDateString()}</p>
+      <p class="response"><strong>Description :</strong> ${latestBreach.Description}</p>
+      <p class="response"><strong>Données compromises :</strong> ${latestBreach.DataClasses.join(', ')}</p>
+    `;
+  } catch (error) {
+    // Gestion des erreurs
+    securityBreachDiv.innerHTML = `
+      <p>Une erreur s'est produite lors de la récupération des données : ${error.message}</p>
+    `;
+    console.error(error);
+  }
+}
+
+// Appeler la fonction au chargement de la page
+fetchLatestBreach();
