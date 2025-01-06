@@ -25,6 +25,7 @@ $titre = $info['titre'];
         <h1><?php echo $firstname . ' ' . $lastname; ?></h1>
         <h2 class="tech-title"><?php echo $titre; ?></h2>
         <p class="tagline"><?php echo $citation; ?></p>
+
         <div class="hero-cta">
             <button class="btn imperial-btn">
                 <span class="tech-text">Audit de Sécurité</span>
@@ -34,7 +35,24 @@ $titre = $info['titre'];
                 <span class="status-indicator">CRITIQUE</span>
             </div>
         </div>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <span class="terminal-title">terminal@deathstar</span>
+                <div class="terminal-buttons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <p><span class="prompt">$</span> last_breach.txt</p>
+                <div id="security-breach">
+                    Chargement des données sur les failles de sécurité...
+                </div>
+            </div>
+        </div>
     </div>
+
     <div class="tech-decoration bottom-right"></div>
 </section>
 
