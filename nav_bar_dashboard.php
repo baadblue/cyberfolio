@@ -1,3 +1,8 @@
+<?php
+// Récupérer le nom du fichier actuel
+$current_page = basename($_SERVER['PHP_SELF']);
+?>
+
 <style>
 .dashboard-container {
     display: flex;
@@ -88,14 +93,21 @@
         <div class="sidebar-menu">
             <ul>
                 <li class="menu-header">Navigation</li>
-                <li><a href="dashboard.php" class="active"><i class="ri-dashboard-line"></i> Tableau de bord</a></li>
+                <li><a href="dashboard.php" class="<?php echo $current_page === 'dashboard.php' ? 'active' : ''; ?>">
+                    <i class="ri-dashboard-line"></i> Tableau de bord
+                </a></li>
                 <li><a href="index.php"><i class="ri-home-4-line"></i> Voir le site</a></li>
                 
                 <li class="menu-header">Gestion des données</li>
-                <li><a href="modif_user.php"><i class="ri-user-settings-line"></i> Gestion utilisateur</a></li>
-                <li><a href="modif_competences.php"><i class="ri-folder-settings-line"></i> Gestion compétences</a></li>
-                <li><a href="modif_projects.php"><i class="ri-shopping-bag-line"></i> Gestion projets</a></li>
-                
+                <li><a href="modif_user.php" class="<?php echo $current_page === 'modif_user.php' ? 'active' : ''; ?>">
+                    <i class="ri-user-settings-line"></i> Gestion utilisateur
+                </a></li>
+                <li><a href="modif_competences.php" class="<?php echo $current_page === 'modif_competences.php' ? 'active' : ''; ?>">
+                    <i class="ri-folder-settings-line"></i> Gestion compétences
+                </a></li>
+                <li><a href="modif_projects.php" class="<?php echo $current_page === 'modif_projects.php' ? 'active' : ''; ?>">
+                    <i class="ri-shopping-bag-line"></i> Gestion projets
+                </a></li>
                 
                 <li class="menu-header">Paramètres</li>
                 <li><a href="logout.php"><i class="ri-logout-box-line"></i> Déconnexion</a></li>

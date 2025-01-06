@@ -1589,3 +1589,101 @@ footer p {
     min-height: 300px;
     padding: 25px;
 }
+
+/* Ajoutez ou modifiez ces styles pour le formulaire des compétences */
+
+.form-container {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    padding: 30px;
+    background: var(--tech-gray);
+    border: 1px solid var(--vader-red);
+    border-radius: 8px;
+}
+
+.form-container .form-group {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--vader-silver);
+}
+
+.form-container input,
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    background: var(--vader-black);
+    border: 1px solid var(--vader-red);
+    border-radius: 4px;
+    color: var(--vader-white);
+    margin-bottom: 20px;
+}
+
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.form-actions .delete-btn {
+    background: transparent;
+    border: 1px solid var(--vader-red);
+    color: var(--vader-red);
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-actions .delete-btn:hover {
+    background: var(--vader-red);
+    color: var(--vader-white);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+/* Ajoutez ou modifiez ces styles pour le formulaire */
+.project-form {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    padding: 30px;
+    background: var(--tech-gray);
+    border: 1px solid var(--vader-red);
+    border-radius: 8px;
+}
+
+.project-form .form-control {
+    width: 100%;
+    padding: 12px;
+    background: var(--vader-black) !important;  /* Fond noir forcé */
+    border: 1px solid var(--vader-red);
+    border-radius: 4px;
+    color: var(--vader-white);
+    margin-bottom: 20px;
+}
+
+.project-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.project-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--vader-silver);
+}
+
+.project-form .form-group {
+    margin-bottom: 20px;
+}
