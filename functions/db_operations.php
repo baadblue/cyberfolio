@@ -19,12 +19,17 @@ function connection_db () {
 }
 
 function verify_login ($pdo, $email, $password) {
-    $requete = "SELECT id_profile FROM profile WHERE email = :email AND password = :password";
+    $requete = "SELECT id_profile, password FROM profile WHERE email = :email";
     $stmt = $pdo -> prepare($requete);
     $stmt -> execute([':email' => $email]);
 
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $row["id_profile"];
+
+    if ($row && password_verify($password, $row['password'])) {
+        return $row["id_profile"];
+    } else {
+        return null;
+    }
 }
 
 function recover_user_info ($pdo, $id) {
