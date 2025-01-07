@@ -105,6 +105,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <li><a href="modif_user.php" class="<?php echo $current_page === 'modif_user.php' ? 'active' : ''; ?>">
                     <i class="ri-user-settings-line"></i> Gestion utilisateur
                 </a></li>
+                <li><a href="modif_a-propos.php" class="<?php echo $current_page === 'modif_a-propos.php' ? 'active' : ''; ?>">
+                    <i class="ri-file-user-line"></i> Gestion À propos
+                </a></li>
                 <li><a href="modif_competences.php" class="<?php echo $current_page === 'modif_competences.php' ? 'active' : ''; ?>">
                     <i class="ri-folder-settings-line"></i> Gestion compétences
                 </a></li>
