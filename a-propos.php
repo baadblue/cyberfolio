@@ -1,5 +1,22 @@
-<?php require_once 'head.php'; ?>
-<?php require_once 'nav_bar.php'; ?>
+<?php 
+require_once 'head.php';
+require_once 'nav_bar.php';
+
+// Connection à la base de données
+require 'functions/db_operations.php';
+$pdo = connection_db();
+
+// Traite les erreurs potentielles lors de l'ouverture de la bdd
+if ($pdo[0] === false) {
+    die($pdo[1]);
+} else {
+    $pdo = $pdo[1];
+}
+
+// Récupération des informations
+$stmt = $pdo->query('SELECT * FROM about WHERE id = 1');
+$about = $stmt->fetch();
+?>
 
 <section id="a-propos" class="about-section">
     <div class="container">
@@ -7,7 +24,7 @@
         
         <div class="about-grid">
             <div class="about-image">
-                <img src="assets/sources/vader-portrait.jpg" alt="Dark Vador">
+                <img src="<?php echo htmlspecialchars($about['image_path']); ?>" alt="Dark Vador">
                 <div class="system-scan"></div>
             </div>
             
@@ -17,23 +34,23 @@
                         <i class="ri-shield-user-line"></i>
                         <h3>Identification</h3>
                     </div>
-                    <p class="about-text">Expert en cybersécurité, Architecte des défenses impériales et Maître de l'OS Obscur. Ancien Jedi reconverti dans la sécurité offensive après une mise à jour majeure du système.</p>
+                    <p class="about-text"><?php echo htmlspecialchars($about['identification']); ?></p>
                 </div>
 
                 <div class="about-stats">
                     <div class="stat-item">
                         <i class="ri-bug-line"></i>
-                        <span class="stat-number">10K+</span>
+                        <span class="stat-number"><?php echo htmlspecialchars($about['bugs_fixed']); ?></span>
                         <span class="stat-label">Failles corrigées</span>
                     </div>
                     <div class="stat-item">
                         <i class="ri-shield-check-line"></i>
-                        <span class="stat-number">99.9%</span>
+                        <span class="stat-number"><?php echo htmlspecialchars($about['system_uptime']); ?></span>
                         <span class="stat-label">Uptime système</span>
                     </div>
                     <div class="stat-item">
                         <i class="ri-code-box-line"></i>
-                        <span class="stat-number">1M+</span>
+                        <span class="stat-number"><?php echo htmlspecialchars($about['code_lines']); ?></span>
                         <span class="stat-label">Lignes de code</span>
                     </div>
                 </div>
