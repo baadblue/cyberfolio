@@ -86,6 +86,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <div class="sidebar">
         <div class="sidebar-header">
             <div class="logo">
+                <a href="login.php">
+                    <img src="assets/sources/laser.png" alt="Logo" class="logo-image">
+                </a>
                 <h2>Empire Galactique</h2>
             </div>
         </div>
