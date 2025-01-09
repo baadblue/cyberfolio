@@ -1,8 +1,5 @@
-<?php require_once 'head.php'; ?>
-<?php require_once 'nav_bar.php'; ?>
-
 <?php
-require 'functions/db_operations.php';
+require_once 'functions/db_operations.php';
 $pdo = connection_db();
 
 // Traite les erreurs potentielles lors de l'ouverture de la bdd
@@ -19,17 +16,17 @@ $titre = $info['titre'];
 
 ?>
 
+<?php require_once 'head.php'; ?>
+<?php require_once 'nav_bar.php'; ?>
+
 <section id="accueil" class="hero-section">
     <div class="tech-decoration top-left"></div>
     <div class="hero-content">
-        <h1><?php echo $firstname . ' ' . $lastname; ?></h1>
+        <h1><?php echo strtoupper($firstname) . ' ' . strtoupper($lastname); ?></h1>
         <h2 class="tech-title"><?php echo $titre; ?></h2>
         <p class="tagline"><?php echo $citation; ?></p>
 
         <div class="hero-cta">
-            <button class="btn imperial-btn">
-                <span class="tech-text">Audit de Sécurité</span>
-            </button>
             <div class="security-status">
                 <span class="status-text">Niveau de menace</span>
                 <span class="status-indicator">CRITIQUE</span>
@@ -45,7 +42,7 @@ $titre = $info['titre'];
                 </div>
             </div>
             <div class="terminal-content">
-                <p><span class="prompt">$</span> last_breach.txt</p>
+                <p><span class="prompt">$</span> cat last_breach.txt</p>
                 <div id="security-breach">
                     Chargement des données sur les failles de sécurité...
                 </div>

@@ -1,9 +1,24 @@
+<?php
+require_once 'functions/db_operations.php';
+$pdo = connection_db();
+
+// Traite les erreurs potentielles lors de l'ouverture de la bdd
+if ($pdo[0] === false) {
+    die($pdo[1]);
+} else {
+    $pdo = $pdo[1];
+}
+$info = recover_user_info($pdo, 1);
+$firstname = $info['firstname'];
+$lastname = $info['lastname'];
+?>
+
 <nav class="navbar">
     <div class="logo">
         <a href="login.php">
             <img src="assets/sources/laser.png" alt="Logo" class="logo-image">
         </a>
-        <a href="index.php">Dark Vador</a>
+        <a href="index.php"><?php echo ucfirst($firstname) . ' ' . ucfirst($lastname); ?></a>
     </div>
     <i class="ri-menu-fill" id="open_menu"></i>
     <ul class="menu">
@@ -28,17 +43,5 @@
             <li><a href="projets.php"><i class="ri-planet-line"></i> Projets</a></li>
             <li><a href="contact.php"><i class="ri-message-2-line"></i> Contact</a></li>
         </ul>
-
-        <div class="sidebar_bottom">
-            <button class="btn imperial-btn">
-                <a href="#contact">Rejoindre le Côté Obscur</a>
-            </button>
-            <div class="social_Icon">
-                <a href="#" title="Holonet"><i class="ri-global-line"></i></a>
-                <a href="#" title="Transmissions Impériales"><i class="ri-broadcast-line"></i></a>
-                <a href="#" title="Communications Galactiques"><i class="ri-space-ship-line"></i></a>
-                <a href="#" title="Base de Données Impériale"><i class="ri-database-2-line"></i></a>
-            </div>
-        </div>
     </div>
 </nav>

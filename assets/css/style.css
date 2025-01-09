@@ -14,6 +14,7 @@
     /* Couleurs principales */
     --vader-black: #000000;
     --vader-red: #FF0000;
+    --vader-green: #00FF00;
     --vader-gray: #2F2F2F;
     --vader-silver: #C0C0C0;
     --vader-white: #FFFFFF;
@@ -1388,6 +1389,24 @@ footer p {
         padding: 25px;
         min-height: 350px;
     }
+}
+
+/* Styles pour le message de confirmation */
+.confirmation-message {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid var(--vader-green);
+    color: var(--vader-green);
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: errorShake 0.5s ease-in-out;
+}
+
+.confirmation-message i {
+    font-size: 1.2rem;
 }
 
 /* Styles pour les messages d'erreur de connexion */
