@@ -115,3 +115,36 @@ async function fetchLatestBreach() {
 
 // Appeler la fonction au chargement de la page
 fetchLatestBreach();
+
+document.getElementById('hashForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const hashInput = document.getElementById('hashInput').value;
+    const resultDiv = document.getElementById('hashResult');
+
+    console.log(hashInput);
+    
+    try {
+        const response = await fetch('detect_hash.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `hash=${encodeURIComponent(hashInput)}`
+        });
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            resultDiv.innerHTML = `<p class="error">${data.error}</p>`;
+        } else {
+            resultDiv.innerHTML = `w
+                <p class="response">Longueur : ${data.length} caractères</p>
+                <p class="response">Types possibles : ${data.possible_types.join(', ')}</p>
+            `;
+        }
+    } catch (error) {
+        resultDiv.innerHTML = '<p class="error">Erreur lors de la détection du hash</p>';
+        console.error(error);
+    }
+});

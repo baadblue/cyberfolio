@@ -1,0 +1,89 @@
+<?php
+// Désactiver l'affichage des erreurs dans la sortie
+ini_set('display_errors', 0);
+error_reporting(0);
+
+header('Content-Type: application/json');
+
+if (!isset($_POST['hash'])) {
+    echo json_encode(['error' => 'Aucun hash fourni']);
+    exit;
+}
+
+$hash = trim($_POST['hash']);
+
+// Chemin vers Python - pour Windows avec UwAmp
+$pythonPath = "python"; // Ajustez selon votre installation
+
+// Si le chemin spécifique ne fonctionne pas, essayer la commande globale
+if (!file_exists($pythonPath)) {
+    $pythonPath = "python";
+}
+
+// Chemin complet vers le script Python
+$scriptPath = __DIR__ . "/assets/scripts/hash_detector.py";
+
+// Vérification que le script existe
+if (!file_exists($scriptPath)) {
+    echo json_encode(['error' => 'Script Python introuvable : ' . $scriptPath]);
+    exit;
+}
+
+$output = [];
+$returnValue = 0;
+
+// Exécution de la commande avec redirection des erreurs
+$command = sprintf('"%s" "%s" %s 2>&1', $pythonPath, $scriptPath, escapeshellarg($hash));
+exec($command, $output, $returnValue);
+
+// Log pour debug
+$logFile = fopen("python_debug.log", "a");
+fwrite($logFile, date('Y-m-d H:i:s') . " Command: " . $command . "\n");
+fwrite($logFile, "Return value: " . $returnValue . "\n");
+fwrite($logFile, "Output: " . print_r($output, true) . "\n");
+fclose($logFile);
+
+// Si pas de sortie
+if (empty($output)) {
+    echo json_encode([
+        'error' => 'Aucune sortie du script Python',
+        'command' => $command,
+        'return_value' => $returnValue
+    ]);
+    exit;
+}
+
+// Si erreur d'exécution
+if ($returnValue !== 0) {
+    echo json_encode([
+        'error' => 'Erreur lors de l\'exécution du script',
+        'output' => $output,
+        'command' => $command
+    ]);
+    exit;
+}
+
+try {
+    // Traitement de la sortie Python
+    $lastOutput = end($output);
+    
+    // Nettoyer la sortie de tout HTML potentiel
+    $lastOutput = strip_tags($lastOutput);
+    
+    // Vérifier si la sortie est un dictionnaire Python valide
+    if (preg_match('/^{.*}$/', $lastOutput)) {
+        $result = eval('return ' . $lastOutput . ';');
+        if ($result === false && $result !== 0) {
+            throw new Exception('Erreur lors de l\'évaluation de la sortie Python');
+        }
+        echo json_encode($result);
+    } else {
+        throw new Exception('Format de sortie Python invalide');
+    }
+} catch (Exception $e) {
+    echo json_encode([
+        'error' => 'Erreur de traitement',
+        'message' => $e->getMessage(),
+        'raw_output' => $output
+    ]);
+}

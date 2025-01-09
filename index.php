@@ -51,6 +51,26 @@ $titre = $info['titre'];
                 </div>
             </div>
         </div>
+        <div class="terminal-window hash-detector">
+            <div class="terminal-header">
+                <span class="terminal-title">hash_detector@deathstar</span>
+                <div class="terminal-buttons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="terminal-content">
+                <p><span class="prompt">$</span> Détecteur de fonction de hachage</p>
+                <form id="hashForm" class="hash-form">
+                    <div class="form-group">
+                        <input type="text" id="hashInput" placeholder="Entrez votre hash..." required>
+                        <button type="submit" class="btn imperial-btn">Détecter</button>
+                    </div>
+                </form>
+                <div id="hashResult" class="hash-result"></div>
+            </div>
+        </div>
     </div>
 
     <div class="tech-decoration bottom-right"></div>
