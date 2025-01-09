@@ -41,7 +41,7 @@ redirect();
             <form class="contact-form" method="POST" action="login.php">
                 <?php if (isset($error_message)): ?>
                     <div class="error-message">
-                        <i class="fas fa-exclamation-circle"></i>
+                        <i class="ri-information-2-fill"></i>
                         <?php echo $error_message; ?>
                     </div>
                 <?php endif; ?>
