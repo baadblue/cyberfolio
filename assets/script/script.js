@@ -115,3 +115,46 @@ async function fetchLatestBreach() {
 
 // Appeler la fonction au chargement de la page
 fetchLatestBreach();
+
+document.getElementById('hashForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const hashInput = document.getElementById('hashInput').value;
+    const resultDiv = document.getElementById('hashResult');
+    
+    try {
+        const response = await fetch('detect_hash.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `hash=${encodeURIComponent(hashInput)}`
+        });
+        
+        const data = await response.json();
+        
+        if (data.error) {
+            resultDiv.innerHTML = `
+                <p class="error">${data.error}</p>
+                ${data.format_detected ? `<p class="response">Format détecté : ${data.format_detected}</p>` : ''}
+            `;
+        } else {
+            resultDiv.innerHTML = `
+                <p class="response">Longueur : ${data.length} caractères</p>
+                <p class="response">Types possibles : ${data.possible_types.join(', ')}</p>
+                <p class="response">Niveau de confiance : ${data.confidence}</p>
+                ${data.characteristics ? `
+                    <p class="response">Caractéristiques :</p>
+                    <ul class="response">
+                        <li>Format hexadécimal : ${data.characteristics.all_hex ? 'Oui' : 'Non'}</li>
+                        <li>Caractères spéciaux : ${data.characteristics.contains_special ? 'Oui' : 'Non'}</li>
+                    </ul>
+                ` : ''}
+                ${data.note ? `<p class="response">Note : ${data.note}</p>` : ''}
+            `;
+        }
+    } catch (error) {
+        resultDiv.innerHTML = '<p class="error">Erreur lors de la détection du hash</p>';
+        console.error(error);
+    }
+});

@@ -1712,3 +1712,48 @@ footer p {
 .project-form .form-group {
     margin-bottom: 20px;
 }
+
+.hash-detector {
+    margin: 30px 0 60px 0;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hash-form {
+    margin: 15px 0;
+}
+
+.hash-form .form-group {
+    display: flex;
+    gap: 10px;
+}
+
+.hash-form input {
+    flex: 1;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--vader-red);
+    color: var(--vader-white);
+    border-radius: 4px;
+}
+
+.hash-result {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-left: 2px solid var(--vader-red);
+}
+
+.hash-result .error {
+    color: var(--vader-red);
+}
+
+.hash-result .response {
+    color: var(--vader-silver);
+    margin-bottom: 5px;
+}
+
+.hash-detector .terminal-content {
+    padding: 20px 20px 30px 20px;
+}
