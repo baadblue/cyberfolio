@@ -3,7 +3,7 @@ require_once 'head.php';
 require_once 'nav_bar.php';
 
 // Connection à la base de données
-require 'functions/db_operations.php';
+require_once 'functions/db_operations.php';
 $pdo = connection_db();
 
 // Traite les erreurs potentielles lors de l'ouverture de la bdd
