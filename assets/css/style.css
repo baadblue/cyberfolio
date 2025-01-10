@@ -372,6 +372,7 @@ nav button:hover {
 
 /* Style de la section héro */
 .hero-section {
+    margin-top: 120px;
     height: 100vh;
     position: relative;
     background-image: url('../sources/imperial-tech-bg.jpg');
